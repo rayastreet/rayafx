@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rachmad Aditya · rayafx</title>
+<meta name="description" content="Portfolio compositor Rachmad Aditya (rayafx): VFX compositing, rotoscoping, prep, dan online editing untuk film, series, dan TVC.">
+<meta property="og:title" content="Rachmad Aditya · rayafx">
+<meta property="og:description" content="VFX compositing, rotoscoping, prep, dan online editing untuk film, series, dan TVC.">
+<meta property="og:image" content="img/kuasa-gelap.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400..600&display=swap">
+<style>
+/* Layout: ruang compositing gelap. Poster proyek terbaru jadi fokus, sisanya lembar kerja yang rapi. Satu aksen amber, motif penanda tracking. Tema tunggal gelap atas permintaan pemilik. */
+:root{
+  --bg:#000000; --ink:#F1ECEA; --amber:#E1AD66; --muted:#9B9491;
+  --line:rgba(241,236,234,.16); --surface:#0F0D0C;
+  --font:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-ui:6px; --r-frame:2px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--font);-webkit-font-smoothing:antialiased}
+.en{display:none}
+:root[data-lang="en"] .en{display:revert}
+:root[data-lang="en"] .id{display:none}
+a{color:var(--amber);text-underline-offset:3px}
+a,button,summary{cursor:pointer}
+button:disabled{cursor:not-allowed}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-weight:500;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(3rem,8vw,6rem);letter-spacing:-.03em;line-height:.98}
+h2{font-size:clamp(1.9rem,4vw,2.9rem);letter-spacing:-.02em}
+h3{font-size:1.25rem;letter-spacing:-.01em}
+p{margin:0;max-width:62ch}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:720px){.wrap{padding-left:max(40px,env(safe-area-inset-left,0px));padding-right:max(40px,env(safe-area-inset-right,0px))}}
+.trk{width:20px;height:20px;flex:none;color:var(--amber)}
+
+/* Header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(0,0,0,.92);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px 20px;min-height:64px;flex-wrap:wrap;padding-block:8px}
+.mark{display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-right:auto}
+nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+nav a{white-space:nowrap;display:inline-flex;align-items:center;min-height:44px;padding-inline:10px;color:var(--ink);text-decoration:none;font-size:.95rem;border-radius:var(--r-ui);transition:color .18s,background .18s}
+nav a:hover{color:var(--amber)}
+nav a:active{background:var(--surface)}
+.chip{min-height:44px;min-width:48px;padding-inline:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:var(--r-ui);font:600 .85rem var(--font);transition:border-color .18s,color .18s}
+.chip:hover{border-color:var(--amber);color:var(--amber)}
+.chip:active{background:var(--surface)}
+@media (max-width:760px){nav{order:3;width:100%;overflow-x:auto;margin-inline:-10px}}
+
+/* Hero */
+.hero{display:grid;gap:40px;padding-block:48px 72px;align-items:center}
+@media (min-width:900px){.hero{grid-template-columns:5fr 6fr;gap:64px;padding-block:72px 104px}}
+.poster{margin:0}
+.poster img{display:block;width:100%;height:auto;border-radius:var(--r-frame);max-width:100%}
+.poster figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;margin-top:12px;font-size:.9rem;color:var(--muted)}
+.poster figcaption em{color:var(--ink);font-style:italic}
+.slate{display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--muted);margin-bottom:24px}
+.roles{margin-top:20px;font-size:1.05rem;color:var(--amber);font-weight:500}
+.lede{margin-top:20px;font-size:1.15rem;color:var(--muted)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding-inline:20px;border-radius:var(--r-ui);font-weight:600;text-decoration:none;transition:background .18s,color .18s,border-color .18s}
+.btn-main{background:var(--amber);color:#000}
+.btn-main:hover{background:var(--ink)}
+.btn-main:active{transform:translateY(1px)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-ghost:active{background:var(--surface)}
+
+/* Sections */
+section{padding-block:72px;border-top:1px solid var(--line)}
+.sec-head{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between;margin-bottom:36px}
+.sec-head .k{display:block;font-size:.92rem;color:var(--muted);margin-bottom:10px}
+
+/* Work */
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.fbtn{min-height:44px;padding-inline:16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 .92rem var(--font);transition:border-color .18s,color .18s,background .18s}
+.fbtn:hover{border-color:var(--ink)}
+.fbtn[aria-pressed="true"]{border-color:var(--amber);color:var(--amber)}
+.fbtn:active{background:var(--surface)}
+.fbtn .n{color:var(--muted);margin-left:4px}
+.fbtn[aria-pressed="true"] .n{color:var(--amber)}
+/* Daftar kredit: seperti credit roll film, karena sebagian besar proyek belum punya gambar */
+.credits{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:96px minmax(0,1fr) 96px 56px 80px 96px;gap:20px;align-items:center;padding-block:14px;border-bottom:1px solid var(--line);transition:background .18s}
+.row:hover{background:var(--surface)}
+.rthumb{width:56px;height:70px;object-fit:cover;border-radius:var(--r-frame);display:block}
+.rthumb.wide{width:96px;height:54px}
+.row>.rthumb,.row>.th-ed{justify-self:center}
+.rthumb.ph{visibility:hidden}
+.rtitle{min-width:0;display:grid;gap:2px}
+.rtitle h3{font-size:clamp(1.1rem,2vw,1.4rem);overflow-wrap:anywhere}
+.meta{font-size:.85rem;color:var(--amber)}
+.rcat,.ryear,.rshot{font-size:.92rem;color:var(--muted)}
+.watch{justify-self:end;display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:none;white-space:nowrap}
+.watch:hover{text-decoration:underline}
+@media (max-width:640px){
+  .row{grid-template-columns:72px minmax(0,1fr) auto;gap:6px 14px}
+  .rthumb{width:44px;height:55px;grid-row:span 2}
+  .rthumb.wide{width:72px;height:41px}
+  .rcat{grid-column:2;font-size:.85rem}
+  .ryear,.rshot{display:none}
+  .rcat::after{content:" · " attr(data-m)}
+  .watch{grid-column:3;grid-row:1 / span 2}
+  .watch.none{display:none}
+}
+.ba-wrap{display:grid;gap:24px;margin-bottom:48px}
+@media (min-width:900px){.ba-wrap{grid-template-columns:2fr 1fr;align-items:end;gap:40px}}
+.ba{position:relative;border-radius:var(--r-frame);overflow:hidden;aspect-ratio:16/9;max-width:100%;background:var(--surface);--pos:50%}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba .after{clip-path:inset(0 0 0 var(--pos))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--amber);pointer-events:none}
+.ba .knob{position:absolute;top:50%;left:50%;width:40px;height:40px;transform:translate(-50%,-50%);border-radius:50%;background:#000;display:grid;place-items:center;border:2px solid var(--amber)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize}
+.ba:has(input:focus-visible) .knob{outline:2px solid var(--ink);outline-offset:3px}
+.ba .tag{position:absolute;bottom:12px;padding:2px 8px;font-size:.78rem;font-weight:600;background:rgba(0,0,0,.72);color:var(--ink);border-radius:3px;pointer-events:none}
+.ba .tag.l{left:12px}.ba .tag.r{right:12px}
+.ba-info{display:grid;gap:10px}
+.ba-info .meta{font-size:.92rem}
+.ba-info p{color:var(--muted)}
+.ba-gallery{margin-bottom:40px}
+.ba-head{font-size:.92rem;color:var(--muted);margin-bottom:12px}
+.ba-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+@media (min-width:900px){.ba-grid{grid-template-columns:repeat(4,1fr)}}
+.ba-card{display:grid;gap:10px;width:100%;padding:0;border:0;background:none;color:var(--ink);text-align:left;font:inherit}
+.ba-thumb{position:relative;display:block;aspect-ratio:16/9;border-radius:var(--r-frame);overflow:hidden;background:var(--surface);outline:1px solid var(--line);transition:outline-color .18s}
+.ba-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ba-thumb .after{clip-path:inset(0 0 0 50%)}
+.ba-thumb .line{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:var(--amber)}
+.ba-thumb .zoom{position:absolute;top:8px;right:8px;width:28px;height:28px;display:grid;place-items:center;border-radius:4px;background:rgba(0,0,0,.72);color:var(--ink);transition:color .18s}
+.ba-card:hover .ba-thumb{outline-color:var(--amber)}
+.ba-card:hover .zoom{color:var(--amber)}
+.ba-card:active .ba-thumb{transform:scale(.99)}
+.ba-cap{display:grid;gap:2px}
+.ba-cap .meta{font-size:.8rem}
+.ba-cap .t{font-size:.98rem;font-weight:500;line-height:1.3}
+.ba-modal{width:min(1100px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:16px;border:1px solid var(--line);border-radius:var(--r-ui);background:var(--bg);color:var(--ink);overflow:auto}
+.ba-modal::backdrop{background:rgba(0,0,0,.86)}
+.ba-modal .ba-info{margin-top:16px}
+.ba-close{position:absolute;top:24px;right:24px;z-index:2;background:rgba(0,0,0,.72);display:grid;place-items:center}
+@media (min-width:720px){.ba-modal{padding:24px}.ba-close{top:32px;right:32px}}
+.empty{color:var(--muted);padding-block:24px}
+.src{font-size:.85rem;color:var(--muted);margin-top:8px}
+
+/* Experience */
+.exp{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.exp li{display:grid;grid-template-columns:minmax(0,140px) 1fr;gap:16px 32px;padding-block:24px;border-bottom:1px solid var(--line);align-items:baseline}
+.exp .dur{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:500;color:var(--amber);line-height:1}
+.exp .dur small{font-size:.9rem;color:var(--muted);font-weight:400;margin-left:6px}
+.exp .role{font-size:1.2rem;font-weight:500}
+.exp .co{color:var(--muted)}
+
+/* Skills */
+.skills{display:grid;gap:32px}
+@media (min-width:760px){.skills{grid-template-columns:1fr 1fr 1fr}}
+.skills h3{font-size:.92rem;font-weight:500;color:var(--muted);margin-bottom:12px}
+.skills ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.skills li{font-size:1.15rem;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.skills dl{margin:0;display:grid;gap:14px}
+.skills dt{font-size:1.05rem;font-weight:500}
+.skills dd{margin:2px 0 0;color:var(--muted);font-size:.95rem}
+
+/* Process */
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:28px;counter-reset:s}
+@media (min-width:900px){.steps{grid-template-columns:repeat(4,1fr);gap:24px}}
+.steps li{counter-increment:s;display:grid;gap:8px;align-content:start}
+.steps li::before{content:counter(s);font-size:2rem;font-weight:500;color:var(--amber);line-height:1}
+.steps p{color:var(--muted);font-size:.98rem}
+.scale{margin-top:48px;padding:24px;border:1px solid var(--line);border-radius:var(--r-ui)}
+.scale ol{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:14px 6px}
+.scale li{display:grid;gap:8px;font-size:.85rem;font-weight:600;min-width:0}
+.scale .lvl{height:6px;border-radius:2px;background:var(--line);overflow:hidden}
+.scale .lvl i{display:block;height:100%;background:var(--amber)}
+.scale p{color:var(--muted);font-size:.95rem}
+
+/* Contact */
+.contact{display:grid;gap:32px;align-items:start}
+@media (min-width:900px){.contact{grid-template-columns:1fr 1fr;gap:64px}}
+.mailbox{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px;border:1px solid var(--line);border-radius:var(--r-ui)}
+.mailbox code{font:600 1.05rem var(--font);user-select:all;word-break:break-all;min-width:0;flex:1 1 220px}
+.status{min-height:1.5em;font-size:.9rem;color:var(--muted);margin-top:8px}
+.checklist{margin:20px 0 0;padding-left:1.2em;color:var(--muted)}
+.checklist li{margin-bottom:6px}
+
+footer{border-top:1px solid var(--line);padding-block:28px;font-size:.88rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+.skip{position:absolute;left:-9999px;top:8px;z-index:20}
+.skip:focus{left:16px}
+
+
+html,body{margin:0}
+[hidden]{display:none!important}
+.ba-info h3{font-size:1.25rem}
+.ba-thumb img,.rthumb{color:transparent;font-size:0}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="tracker" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="5.5"></circle><path d="M12 1.5v6M12 16.5v6M1.5 12h6M16.5 12h6"></path></g><circle cx="12" cy="12" r="1.4" fill="currentColor"></circle></symbol>
+</svg>
+<a class="btn btn-main skip" href="#karya"><span class="id">Lompat ke karya</span><span class="en">Skip to work</span></a>
+<header>
+  <div class="wrap bar">
+    <a class="mark" href="#top">Rachmad Aditya</a>
+    <nav aria-label="Utama">
+      <ul>
+        <li><a href="#karya"><span class="id">Karya</span><span class="en">Work</span></a></li>
+        <li><a href="#pengalaman"><span class="id">Pengalaman</span><span class="en">Experience</span></a></li>
+        <li><a href="#keahlian"><span class="id">Keahlian</span><span class="en">Skills</span></a></li>
+        <li><a href="#cara-kerja"><span class="id">Cara kerja</span><span class="en">Process</span></a></li>
+        <li><a href="#kontak"><span class="id">Kontak</span><span class="en">Contact</span></a></li>
+      </ul>
+    </nav>
+    <button class="chip" id="langBtn" type="button" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+<main id="top">
+  <div class="wrap hero">
+    <figure class="poster">
+      <img src="img/kuasa-gelap.jpg" width="900" height="1125" fetchpriority="high" alt="Poster film Kuasa Gelap: Perjanjian Darah">
+      <figcaption>
+        <span><span class="id">Terbaru:</span><span class="en">Latest:</span> <em>Kuasa Gelap: Perjanjian Darah</em></span>
+        <a href="https://www.youtube.com/watch?v=rPUglsuu3OQ" target="_blank" rel="noopener"><span class="id">Tonton trailer</span><span class="en">Watch trailer</span></a>
+      </figcaption>
+    </figure>
+    <div>
+      <div class="slate"><svg class="trk" aria-hidden="true"><use href="#tracker"></use></svg><span>Compositor · Tangerang, Indonesia</span></div>
+      <h1>Rachmad Aditya</h1>
+      <p class="roles">VFX Artist · Roto Artist · Prep Artist · Junior Online Editor</p>
+      <p class="lede id">Compositor di Whisper Media selama lebih dari lima tahun. Mengerjakan VFX, rotoscoping, prep, dan online editing untuk film layar lebar, series, dan iklan televisi.</p>
+      <p class="lede en">Compositor at Whisper Media for more than five years. Working on VFX, rotoscoping, prep, and online editing for feature films, series, and TV commercials.</p>
+      <div class="cta-row">
+        <a class="btn btn-main" href="#karya"><span class="id">Lihat karya</span><span class="en">View work</span></a>
+        <a class="btn btn-ghost" href="#kontak"><span class="id">Kirim plate untuk estimasi</span><span class="en">Send plates for a quote</span></a>
+      </div>
+    </div>
+  </div>
+
+  <section id="karya">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="k num" id="workCount"></span><h2><span class="id">Karya</span><span class="en">Selected work</span></h2><p class="src"><span class="id">Jumlah shot dari log kerja freelance.</span><span class="en">Shot counts from my freelance work log.</span></p></div>
+        <div class="filters" role="group" aria-label="Filter kategori" id="filters"></div>
+      </div>
+      <div class="ba-gallery" id="before-after">
+        <p class="ba-head"><span class="id">Before / after · klik untuk memperbesar dan geser</span><span class="en">Before / after · click to enlarge and drag</span></p>
+        <ul class="ba-grid" id="baGrid"></ul>
+      </div>
+      <dialog class="ba-modal" id="baModal" aria-label="Before after">
+        <button class="chip ba-close" type="button" id="baClose" aria-label="Tutup"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        <div class="ba" id="ba">
+          <img id="baB" src="" alt="">
+          <img class="after" id="baA" src="" alt="">
+          <div class="handle"><div class="knob"><svg class="trk" aria-hidden="true"><use href="#tracker"></use></svg></div></div>
+          <span class="tag l">Before</span><span class="tag r">After</span>
+          <input type="range" id="baRange" min="0" max="100" value="50" aria-label="Geser untuk membandingkan before dan after">
+        </div>
+        <div class="ba-info" id="baInfo"></div>
+      </dialog>
+      <ul class="credits" id="grid" aria-live="polite"></ul>
+    </div>
+  </section>
+
+  <section id="pengalaman">
+    <div class="wrap">
+      <div class="sec-head"><h2><span class="id">Pengalaman</span><span class="en">Experience</span></h2></div>
+      <ul class="exp" id="exp"></ul>
+    </div>
+  </section>
+
+  <section id="keahlian">
+    <div class="wrap">
+      <div class="sec-head"><h2><span class="id">Keahlian</span><span class="en">Skills</span></h2></div>
+      <div class="skills">
+        <div><h3><span class="id">Disiplin</span><span class="en">Disciplines</span></h3><ul id="disc"></ul></div>
+        <div><h3>Software</h3><ul id="tools"></ul></div>
+        <div><h3><span class="id">Pekerjaan yang sering diambil</span><span class="en">Typical tasks</span></h3>
+          <dl>
+            <div><dt><span class="id">Cleanup dan object removal</span><span class="en">Cleanup and object removal</span></dt><dd class="id">Sling, rig, marker, boom, dan objek yang tidak diinginkan.</dd><dd class="en">Slings, rigs, markers, booms, and unwanted objects.</dd></div>
+            <div><dt>Screen replacement</dt><dd class="id">Layar ponsel, laptop, dan TV, termasuk tangan yang lewat di depannya.</dd><dd class="en">Phone, laptop, and TV screens, including hands passing in front.</dd></div>
+            <div><dt><span class="id">Green screen dan 3D tracking</span><span class="en">Green screen and 3D tracking</span></dt><dd class="id">Keying, spill, dan elemen yang ikut gerakan kamera.</dd><dd class="en">Keying, spill, and elements that follow the camera move.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cara-kerja">
+    <div class="wrap">
+      <div class="sec-head"><h2><span class="id">Harga keluar setelah setiap shot dinilai.</span><span class="en">A price comes after every shot is assessed.</span></h2></div>
+      <ol class="steps">
+        <li><h3><span class="id">Kirim plate dan shot list</span><span class="en">Send plates and a shot list</span></h3><p class="id">Sertakan durasi, format, dan deadline.</p><p class="en">Include duration, format, and deadline.</p></li>
+        <li><h3><span class="id">Breakdown per shot</span><span class="en">Per-shot breakdown</span></h3><p class="id">Setiap shot dinilai tingkat kesulitannya, lalu diestimasi waktu dan harganya.</p><p class="en">Each shot gets a difficulty rating, then a time and price estimate.</p></li>
+        <li><h3><span class="id">Pengerjaan dan review</span><span class="en">Work and review</span></h3><p class="id">Versi dikirim untuk dicek, revisi sesuai catatan.</p><p class="en">Versions go out for review, with revisions from your notes.</p></li>
+        <li><h3>Delivery</h3><p class="id">File final dikirim dalam format yang disepakati di awal.</p><p class="en">Finals are delivered in the format agreed at the start.</p></li>
+      </ol>
+      <div class="scale">
+        <p class="id">Lima tingkat kesulitan yang dipakai di setiap breakdown:</p>
+        <p class="en">The five difficulty levels used in every breakdown:</p>
+        <ol aria-label="Tingkat kesulitan">
+          <li><span class="lvl"><i style="width:20%"></i></span><span class="id">Mudah</span><span class="en">Easy</span></li>
+          <li><span class="lvl"><i style="width:40%"></i></span><span class="id">Sedang</span><span class="en">Medium</span></li>
+          <li><span class="lvl"><i style="width:60%"></i></span><span class="id">Lumayan</span><span class="en">Fair</span></li>
+          <li><span class="lvl"><i style="width:80%"></i></span><span class="id">Agak sulit</span><span class="en">Tough</span></li>
+          <li><span class="lvl"><i style="width:100%"></i></span><span class="id">Sulit</span><span class="en">Hard</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontak">
+    <div class="wrap contact">
+      <div>
+        <span class="k" style="display:block;font-size:.92rem;color:var(--muted);margin-bottom:10px"><span class="id">Kontak dan kolaborasi</span><span class="en">Contact and collaboration</span></span>
+        <h2><span class="id">Punya shot yang perlu dibereskan?</span><span class="en">Got shots that need fixing?</span></h2>
+        <p style="margin-top:16px;color:var(--muted)" class="id">Kirim email berisi info di bawah, dan saya balas dengan breakdown serta estimasi.</p>
+        <p style="margin-top:16px;color:var(--muted)" class="en">Email me the details below and I will reply with a breakdown and an estimate.</p>
+        <ul class="checklist">
+          <li><span class="id">Jumlah shot dan durasi masing-masing</span><span class="en">Number of shots and their durations</span></li>
+          <li><span class="id">Jenis pekerjaan (roto, cleanup, keying, tracking)</span><span class="en">Type of work (roto, cleanup, keying, tracking)</span></li>
+          <li><span class="id">Format dan resolusi delivery</span><span class="en">Delivery format and resolution</span></li>
+          <li>Deadline</li>
+        </ul>
+      </div>
+      <div>
+        <div class="mailbox">
+          <code id="email"></code>
+          <button class="chip" id="copyBtn" type="button"><span class="id">Salin</span><span class="en">Copy</span></button>
+          <a class="btn btn-main" id="mailLink" href="#"><span class="id">Tulis email</span><span class="en">Write an email</span></a>
+        </div>
+        <p class="status" id="copyStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Rachmad Aditya</span>
+    <span>VFX Artist · Roto Artist · Prep Artist · Junior Online Editor</span>
+  </div>
+</footer>
+<script type="application/json" id="fallback">{"projects": [{"title": "Kuasa Gelap: Perjanjian Darah", "category": "Film", "note": "IMAX", "year": "2026", "shots": 48, "scopeId": "Wire removal (20 shot), sambungan make-up, isi layar HP & CCTV, green screen jadi laut, remove & add lighting, replace & extend rumah, replace background, hapus kedipan, stabilize", "scopeEn": "Wire removal (20 shots), make-up continuity fixes, phone & CCTV screen inserts, green screen to sea, lighting removal & add, house replacement & extension, background replacement, blink removal, stabilization", "role": "VFX Artist", "video": "https://www.youtube.com/watch?v=rPUglsuu3OQ", "thumb": "img/kuasa-gelap.jpg", "ratio": "4:5"}, {"title": "Shooting Scene", "category": "Digital", "note": "", "year": "2026", "shots": 5, "scopeId": "Efek tembakan, efek luka", "scopeEn": "Gunshot and wound effects", "role": "", "video": "", "thumb": "", "ratio": "16:9"}, {"title": "Confetti Scene", "category": "Digital", "note": "", "year": "2026", "shots": 4, "scopeId": "Add grafis", "scopeEn": "Add grafis", "role": "", "video": "", "thumb": "", "ratio": "16:9"}, {"title": "ATHISIYA RTM TELE", "category": "Digital", "note": "", "year": "2026", "shots": 1, "scopeId": "Screen replacement", "scopeEn": "Screen replacement", "role": "", "video": "", "thumb": "", "ratio": "16:9"}, {"title": "FILAPPI - Music Video", "category": "Digital", "note": "", "year": "2026", "shots": 4, "scopeId": "Grafis love, title name", "scopeEn": "Love graphics, title name", "role": "", "video": "https://www.youtube.com/watch?v=oWS6xP8ERPo", "thumb": "", "ratio": "16:9"}, {"title": "Mobile Legends: Bang Bang", "category": "Digital", "note": "", "year": "2026", "shots": 81, "scopeId": "Touchup, Rotoscoping", "scopeEn": "Touchup, Rotoscoping", "role": "", "video": "https://www.youtube.com/watch?v=_2Ktv28QwEk&list=PLXYNRGnwpSnM", "thumb": "img/mlbb.jpg", "ratio": "16:9"}, {"title": "Sasa Santan Gulai Kambing", "category": "TVC", "note": "", "year": "2026", "shots": 37, "scopeId": "Touchup", "scopeEn": "Touchup", "role": "", "video": "https://www.youtube.com/watch?v=-8gN3R53cZ8", "thumb": "", "ratio": "16:9"}, {"title": "Sasa Santan MAKTERCHEF", "category": "TVC", "note": "", "year": "2026", "shots": 29, "scopeId": "Touchup", "scopeEn": "Touchup", "role": "", "video": "https://www.youtube.com/watch?v=3SFY3IhPi3Y", "thumb": "", "ratio": "16:9"}, {"title": "Larutan Cap Kaki Tiga COOLTOPIA", "category": "TVC", "note": "", "year": "2026", "shots": 26, "scopeId": "Touchup", "scopeEn": "Touchup", "role": "", "video": "https://www.youtube.com/watch?v=e2EBaEY8FIU&list=PLTmUyQzHNHvU", "thumb": "", "ratio": "16:9"}, {"title": "Dua Kelinci Roni", "category": "TVC", "note": "", "year": "2026", "shots": 17, "scopeId": "Touchup", "scopeEn": "Touchup", "role": "", "video": "https://www.youtube.com/watch?v=SQMe_K6M6Ns", "thumb": "", "ratio": "16:9"}, {"title": "Cussons Baby", "category": "TVC", "note": "", "year": "2026", "shots": 1, "scopeId": "Rotoscoping", "scopeEn": "Rotoscoping", "role": "", "video": "https://www.youtube.com/watch?v=l_N89EIbmyE", "thumb": "", "ratio": "16:9"}, {"title": "Indosat YONO", "category": "TVC", "note": "", "year": "2026", "shots": 39, "scopeId": "Rotoscoping, Touchup, Wire removal", "scopeEn": "Rotoscoping, Touchup, Wire removal", "role": "", "video": "https://www.youtube.com/watch?v=tg7ZxfAwF0w", "thumb": "", "ratio": "16:9"}, {"title": "MR.DIY Raya", "category": "TVC", "note": "", "year": "2026", "shots": 12, "scopeId": "Rotoscoping, Touchup", "scopeEn": "Rotoscoping, Touchup", "role": "", "video": "https://www.youtube.com/watch?v=Xrn53zgdP-c", "thumb": "", "ratio": "16:9"}, {"title": "Amero Jewelery", "category": "TVC", "note": "", "year": "2026", "shots": 44, "scopeId": "Touchup", "scopeEn": "Touchup", "role": "", "video": "https://www.youtube.com/watch?v=W7SQ-65Jfws&list=PLVOOIwraKOgA", "thumb": "", "ratio": "16:9"}, {"title": "Kapal Api Gingerbon", "category": "TVC", "note": "", "year": "2026", "shots": 10, "scopeId": "Rotoscoping", "scopeEn": "Rotoscoping", "role": "", "video": "https://www.youtube.com/watch?v=NimDfFgS_P4", "thumb": "", "ratio": "16:9"}, {"title": "Tuhan, Benarkah Kau Mendengarku?", "category": "Film", "note": "", "year": "2025", "shots": 12, "scopeId": "Cleanup, touchup", "scopeEn": "Cleanup, touchup", "role": "", "video": "https://www.youtube.com/watch?v=qegt5PuKctQ", "thumb": "", "ratio": "16:9"}, {"title": "KAI TAABOLA - BALE", "category": "Digital", "note": "", "year": "2025", "shots": 9, "scopeId": "Rotoscoping", "scopeEn": "Rotoscoping", "role": "", "video": "", "thumb": "img/taabola-bale.jpg", "ratio": "16:9"}, {"title": "TOTOLE Kaldu Jamur", "category": "TVC", "note": "", "year": "2025", "shots": 8, "scopeId": "Rotoscoping", "scopeEn": "Rotoscoping", "role": "", "video": "https://www.youtube.com/watch?v=xbqzIW4zzak", "thumb": "", "ratio": "16:9"}, {"title": "Penunggu Rumah: Buto Ijo", "category": "Film", "note": "", "year": "2025", "shots": 26, "scopeId": "Cleanup jerawat dan noda kulit", "scopeEn": "Acne and blemish cleanup", "role": "", "video": "https://www.youtube.com/watch?v=FgV822hDI0Q", "thumb": "", "ratio": "16:9"}, {"title": "Losmen Bu Broto Series", "category": "Series", "note": "", "year": "2025", "shots": 2, "scopeId": "Remove person, screen replacement", "scopeEn": "Person removal, screen replacement", "role": "", "video": "", "thumb": "img/losmen-bu-broto.jpg", "ratio": "16:9"}], "ba": [{"project": "Losmen Bu Broto Series", "titleId": "Hapus orang di belakang pemeran", "titleEn": "Removing a person behind the lead", "descId": "Orang berbaju kotak-kotak lewat di belakang pemeran sepanjang shot. Background di baliknya direkonstruksi supaya tanaman dan dinding tersambung tanpa jejak.", "descEn": "A person in a plaid shirt walks behind the lead through the shot. The background behind him was rebuilt so the plants and wall continue without a trace.", "before": "https://drive.google.com/file/d/10MNG1rEQDUxlN4xUEoKPowzrcfOIUGjM/view", "after": "https://drive.google.com/file/d/1pmTdOtBg2jIHfAL3IsvsPaVLdoz53JsG/view"}, {"project": "Losmen Bu Broto Series", "titleId": "Screen replacement layar ponsel", "titleEn": "Phone screen replacement", "descId": "Layar hijau dengan tracking marker diganti tampilan video call. Layar di-track mengikuti gerak tangan, dan jempol yang menutupi tepi layar tetap berada di depan.", "descEn": "A green screen with tracking markers replaced by a video call. The screen is tracked to the hand's motion, and the thumb over its edge stays in front.", "before": "https://drive.google.com/file/d/1JhO_bQywRYZLCNNmnGjVW-JxmkWuO5XG/view", "after": "https://drive.google.com/file/d/1mrF6PZJQ3oATjcWQ678Lq1RoEmBTkCwB/view"}, {"project": "KAI TAABOLA - BALE", "titleId": "Keying green screen ke pantai", "titleEn": "Green screen keyed to a beach", "descId": "Sekelompok penari direkam di depan green screen dengan tracking marker. Green screen di-key, termasuk di sela jari dan tangan yang bergerak cepat, lalu diganti background pantai yang mengikuti gerak kamera.", "descEn": "A group of dancers shot against a green screen with tracking markers. The screen was keyed, including between fingers and fast-moving hands, and replaced with a beach plate that follows the camera move.", "before": "https://drive.google.com/file/d/1IRaOKf1fUvTtstFh3_a48Blq7D4q8KDy/view", "after": "https://drive.google.com/file/d/13MMJiY-zwmY23QPANBmsB8lxBUiPjpII/view"}, {"project": "ATHISIYA RTM TELE", "titleId": "Screen replacement layar TV", "titleEn": "TV screen replacement", "descId": "Layar TV ditutup kertas hijau yang kusut dan tidak rata. Area layar di-track lalu diganti tampilan siaran live, dan bingkai TV tetap utuh di tepinya.", "descEn": "The TV screen was covered with creased, uneven green paper. The screen area was tracked and replaced with a live broadcast, keeping the TV bezel intact around the edges.", "before": "https://drive.google.com/file/d/1dOjjwSvUXQXhTYDO0vD2FHcNhursTLC-/view", "after": "https://drive.google.com/file/d/18YhTwLWTwSDMmZPgwvmn40sSRh3aY26_/view"}], "experience": [{"company": "Whisper Media", "role": "Compositor Artist", "duration": "5+"}, {"company": "Freelance", "role": "Junior Online Editor", "duration": "1+"}, {"company": "Freelance", "role": "VFX Artist", "duration": "1+"}], "disciplines": ["VFX Compositing", "Rotoscoping", "Prep / Cleanup", "Online Editing"], "tools": ["Mocha Pro", "After Effects", "Photoshop"], "email": "rachmadaditya08@gmail.com"}</script>
+<script src="app.js"></script>
+</body>
+</html>
